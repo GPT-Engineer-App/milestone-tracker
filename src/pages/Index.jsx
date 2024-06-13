@@ -91,7 +91,7 @@ const Index = () => {
                 <Text>{milestone.title}</Text>
                 <Text fontSize="sm" color="gray.500">Date: {milestone.date}</Text>
                 <Collapse in={visibleMilestones[index]}>
-                  <Box p={5} shadow="md" borderWidth="1px" width="250px" bg="white">
+                  <Box p={6} shadow="md" borderWidth="1px" width="250px" bg="white">
                     <List spacing={3}>
                       {milestone.requirements.map((req, reqIndex) => (
                         <ListItem key={reqIndex}>
@@ -101,7 +101,7 @@ const Index = () => {
                       ))}
                     </List>
                     <Progress value={(milestone.requirements.filter(req => req.completed).length / milestone.requirements.length) * 100} size="sm" mt={4} />
-                    <InputGroup mt={4}>
+                    <InputGroup mt={6}>
                       <Input
                         placeholder="New Requirement"
                         value={newRequirement[index] || ""}
