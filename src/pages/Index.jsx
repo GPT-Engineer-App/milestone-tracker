@@ -26,12 +26,19 @@ const Index = () => {
   const [visibleMilestones, setVisibleMilestones] = useState({});
   const [newMilestoneTitle, setNewMilestoneTitle] = useState("");
   const [newMilestoneDate, setNewMilestoneDate] = useState("");
+  const [newRequirement, setNewRequirement] = useState({});
 
   const toggleVisibility = (index) => {
     setVisibleMilestones((prev) => ({
       ...prev,
       [index]: !prev[index],
     }));
+    if (!newRequirement[index]) {
+      setNewRequirement((prev) => ({
+        ...prev,
+        [index]: "",
+      }));
+    }
   };
 
   const addMilestone = () => {
@@ -46,6 +53,23 @@ const Index = () => {
       ]);
       setNewMilestoneTitle("");
       setNewMilestoneDate("");
+    }
+  };
+
+  const addRequirement = (milestoneIndex) => {
+    if (newRequirement[milestoneIndex]) {
+      setMilestones((prev) => {
+        const updatedMilestones = [...prev];
+        updatedMilestones[milestoneIndex].requirements.push({
+          text: newRequirement[milestoneIndex],
+          completed: false,
+        });
+        return updatedMilestones;
+      });
+      setNewRequirement((prev) => ({
+        ...prev,
+        [milestoneIndex]: "",
+      }));
     }
   };
 
@@ -77,6 +101,21 @@ const Index = () => {
                       ))}
                     </List>
                     <Progress value={(milestone.requirements.filter(req => req.completed).length / milestone.requirements.length) * 100} size="sm" mt={4} />
+                    <InputGroup mt={4}>
+                      <Input
+                        placeholder="New Requirement"
+                        value={newRequirement[index] || ""}
+                        onChange={(e) => setNewRequirement((prev) => ({
+                          ...prev,
+                          [index]: e.target.value,
+                        }))}
+                      />
+                      <InputRightElement>
+                        <Button onClick={() => addRequirement(index)} leftIcon={<FaPlus />} colorScheme="teal">
+                          Add
+                        </Button>
+                      </InputRightElement>
+                    </InputGroup>
                   </Box>
                 </Collapse>
               </VStack>
