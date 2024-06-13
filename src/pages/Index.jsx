@@ -101,21 +101,23 @@ const Index = () => {
                       ))}
                     </List>
                     <Progress value={(milestone.requirements.filter(req => req.completed).length / milestone.requirements.length) * 100} size="sm" mt={4} />
-                    <InputGroup mt={6}>
-                      <Input
-                        placeholder="New Requirement"
-                        value={newRequirement[index] || ""}
-                        onChange={(e) => setNewRequirement((prev) => ({
-                          ...prev,
-                          [index]: e.target.value,
-                        }))}
-                      />
-                      <InputRightElement>
-                        <Button onClick={() => addRequirement(index)} leftIcon={<FaPlus />} colorScheme="teal">
-                          Add
-                        </Button>
-                      </InputRightElement>
-                    </InputGroup>
+                    <Box mt={6} p={4} borderWidth="1px" borderRadius="md" bg="gray.50">
+                      <InputGroup>
+                        <Input
+                          placeholder="New Requirement"
+                          value={newRequirement[index] || ""}
+                          onChange={(e) => setNewRequirement((prev) => ({
+                            ...prev,
+                            [index]: e.target.value,
+                          }))}
+                        />
+                        <InputRightElement>
+                          <Button onClick={() => addRequirement(index)} leftIcon={<FaPlus />} colorScheme="teal">
+                            Add
+                          </Button>
+                        </InputRightElement>
+                      </InputGroup>
+                    </Box>
                   </Box>
                 </Collapse>
               </VStack>
