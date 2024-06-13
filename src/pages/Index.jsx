@@ -124,7 +124,7 @@ const Index = () => {
             </Box>
           ))}
         </Box>
-        <VStack spacing={6} width="100%" mt={10}> {/* Added margin-top here */}
+        <VStack spacing={6} width="100%" mt={20}> {/* Increased margin-top here */}
           <Box width="100%">
             <InputGroup>
               <Input
