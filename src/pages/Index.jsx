@@ -124,27 +124,31 @@ const Index = () => {
             </Box>
           ))}
         </Box>
-        <VStack spacing={6} width="100%">
-          <InputGroup>
-            <Input
-              placeholder="New Milestone Title"
-              value={newMilestoneTitle}
-              onChange={(e) => setNewMilestoneTitle(e.target.value)}
-            />
-          </InputGroup>
-          <InputGroup>
-            <Input
-              type="date"
-              placeholder="New Milestone Date"
-              value={newMilestoneDate}
-              onChange={(e) => setNewMilestoneDate(e.target.value)}
-            />
-            <InputRightElement>
-              <Button onClick={addMilestone} leftIcon={<FaPlus />} colorScheme="teal">
-                Add Milestone
-              </Button>
-            </InputRightElement>
-          </InputGroup>
+        <VStack spacing={6} width="100%" mt={10}> {/* Added margin-top here */}
+          <Box width="100%">
+            <InputGroup>
+              <Input
+                placeholder="New Milestone Title"
+                value={newMilestoneTitle}
+                onChange={(e) => setNewMilestoneTitle(e.target.value)}
+              />
+            </InputGroup>
+          </Box>
+          <Box width="100%" mt={4}> {/* Added margin-top here for spacing */}
+            <InputGroup>
+              <Input
+                type="date"
+                placeholder="New Milestone Date"
+                value={newMilestoneDate}
+                onChange={(e) => setNewMilestoneDate(e.target.value)}
+              />
+              <InputRightElement>
+                <Button onClick={addMilestone} leftIcon={<FaPlus />} colorScheme="teal">
+                  Add Milestone
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </Box>
         </VStack>
       </VStack>
     </Container>
