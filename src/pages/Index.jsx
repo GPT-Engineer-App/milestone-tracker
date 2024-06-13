@@ -142,12 +142,12 @@ const Index = () => {
                 value={newMilestoneDate}
                 onChange={(e) => setNewMilestoneDate(e.target.value)}
               />
-              <InputRightElement>
-                <Button onClick={addMilestone} leftIcon={<FaPlus />} colorScheme="teal">
-                  Add Milestone
-                </Button>
-              </InputRightElement>
             </InputGroup>
+          </Box>
+          <Box width="100%" mt={4}> {/* Added margin-top here for spacing */}
+            <Button onClick={addMilestone} leftIcon={<FaPlus />} colorScheme="teal" width="100%">
+              Add Milestone
+            </Button>
           </Box>
         </VStack>
       </VStack>
