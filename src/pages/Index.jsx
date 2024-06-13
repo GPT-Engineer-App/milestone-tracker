@@ -1,27 +1,31 @@
-import { Container, Text, VStack, Box, Heading, List, ListItem, ListIcon, Progress, HStack, IconButton, Collapse } from "@chakra-ui/react";
-import { FaCheckCircle, FaHourglassHalf, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { Container, Text, VStack, Box, Heading, List, ListItem, ListIcon, Progress, HStack, IconButton, Collapse, Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
+import { FaCheckCircle, FaHourglassHalf, FaChevronDown, FaChevronUp, FaPlus } from "react-icons/fa";
 import { useState } from "react";
 
-const milestones = [
-  {
-    title: "Milestone 1",
-    requirements: [
-      { text: "Requirement 1.1", completed: true },
-      { text: "Requirement 1.2", completed: false },
-      { text: "Requirement 1.3", completed: true },
-    ],
-  },
-  {
-    title: "Milestone 2",
-    requirements: [
-      { text: "Requirement 2.1", completed: false },
-      { text: "Requirement 2.2", completed: false },
-    ],
-  },
-];
-
 const Index = () => {
+  const [milestones, setMilestones] = useState([
+    {
+      title: "Milestone 1",
+      date: "2023-10-01",
+      requirements: [
+        { text: "Requirement 1.1", completed: true },
+        { text: "Requirement 1.2", completed: false },
+        { text: "Requirement 1.3", completed: true },
+      ],
+    },
+    {
+      title: "Milestone 2",
+      date: "2023-11-01",
+      requirements: [
+        { text: "Requirement 2.1", completed: false },
+        { text: "Requirement 2.2", completed: false },
+      ],
+    },
+  ]);
+
   const [visibleMilestones, setVisibleMilestones] = useState({});
+  const [newMilestoneTitle, setNewMilestoneTitle] = useState("");
+  const [newMilestoneDate, setNewMilestoneDate] = useState("");
 
   const toggleVisibility = (index) => {
     setVisibleMilestones((prev) => ({
@@ -29,6 +33,22 @@ const Index = () => {
       [index]: !prev[index],
     }));
   };
+
+  const addMilestone = () => {
+    if (newMilestoneTitle && newMilestoneDate) {
+      setMilestones((prev) => [
+        ...prev,
+        {
+          title: newMilestoneTitle,
+          date: newMilestoneDate,
+          requirements: [],
+        },
+      ]);
+      setNewMilestoneTitle("");
+      setNewMilestoneDate("");
+    }
+  };
+
   return (
     <Container centerContent maxW="container.md" py={10}>
       <VStack spacing={8} width="100%">
@@ -63,6 +83,28 @@ const Index = () => {
             </Box>
           ))}
         </Box>
+        <VStack spacing={4} width="100%">
+          <InputGroup>
+            <Input
+              placeholder="New Milestone Title"
+              value={newMilestoneTitle}
+              onChange={(e) => setNewMilestoneTitle(e.target.value)}
+            />
+          </InputGroup>
+          <InputGroup>
+            <Input
+              type="date"
+              placeholder="New Milestone Date"
+              value={newMilestoneDate}
+              onChange={(e) => setNewMilestoneDate(e.target.value)}
+            />
+            <InputRightElement>
+              <Button onClick={addMilestone} leftIcon={<FaPlus />} colorScheme="teal">
+                Add Milestone
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </VStack>
       </VStack>
     </Container>
   );
