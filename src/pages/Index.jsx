@@ -75,12 +75,12 @@ const Index = () => {
 
   return (
     <Container centerContent maxW="container.md" py={10}>
-      <VStack spacing={8} width="100%">
+      <VStack spacing={12} width="100%">
         <Heading as="h1" size="xl">Technical Dashboard</Heading>
         <Box position="relative" width="100%" height="2px" bg="gray.300" my={10}>
           {milestones.map((milestone, index) => (
             <Box key={index} position="absolute" left={`${(index / (milestones.length - 1)) * 100}%`} transform="translateX(-50%)">
-              <VStack spacing={2}>
+              <VStack spacing={4} align="stretch">
                 <IconButton
                   icon={visibleMilestones[index] ? <FaChevronUp /> : <FaChevronDown />}
                   onClick={() => toggleVisibility(index)}
@@ -91,7 +91,7 @@ const Index = () => {
                 <Text>{milestone.title}</Text>
                 <Text fontSize="sm" color="gray.500">Date: {milestone.date}</Text>
                 <Collapse in={visibleMilestones[index]}>
-                  <Box p={5} shadow="md" borderWidth="1px" width="200px">
+                  <Box p={5} shadow="md" borderWidth="1px" width="250px" bg="white">
                     <List spacing={3}>
                       {milestone.requirements.map((req, reqIndex) => (
                         <ListItem key={reqIndex}>
@@ -122,7 +122,7 @@ const Index = () => {
             </Box>
           ))}
         </Box>
-        <VStack spacing={4} width="100%">
+        <VStack spacing={6} width="100%">
           <InputGroup>
             <Input
               placeholder="New Milestone Title"
